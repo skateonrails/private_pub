@@ -1,8 +1,10 @@
 development:
   server: http://dev.local:9292/faye
+  js_faye_url: http://dev.local:9292/faye.js
   secret_token: DEVELOPMENT_SECRET_TOKEN
   signature_expiration: 600
 production:
-  server: http://example.com/faye
+  server: http://example.com:9292/faye
+  js_faye_url: http://example.com/faye.js
   secret_token: PRODUCTION_SECRET_TOKEN
   signature_expiration: 600

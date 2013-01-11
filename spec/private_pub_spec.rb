@@ -21,7 +21,7 @@ describe PrivatePub do
 
   it "loads a simple configuration file via load_config" do
     PrivatePub.load_config("spec/fixtures/private_pub.yml", "production")
-    PrivatePub.config[:server].should eq("http://example.com/faye")
+    PrivatePub.config[:server].should eq("http://example.com:9292/faye")
     PrivatePub.config[:secret_token].should eq("PRODUCTION_SECRET_TOKEN")
     PrivatePub.config[:signature_expiration].should eq(600)
   end

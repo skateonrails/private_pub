@@ -15,7 +15,10 @@ function buildPrivatePub(doc) {
           self.connecting = true;
           var script = doc.createElement("script");
           script.type = "text/javascript";
-          script.src = self.subscriptions.server + ".js";
+          if (self.subscriptions.js_faye_url == null)
+            script.src = self.subscriptions.server + ".js";
+          else
+            script.src = self.subscriptions.js_faye_url;
           script.onload = self.connectToFaye;
           doc.documentElement.appendChild(script);
         }
