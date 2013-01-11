@@ -50,6 +50,12 @@ function buildPrivatePub(doc) {
       if (!self.subscriptions.server) {
         self.subscriptions.server = options.server;
       }
+      
+      if (!self.subscriptions.js_faye_url) {
+        self.subscriptions.js_faye_url = options.js_faye_url;
+      }
+      delete options.js_faye_url;
+      
       self.subscriptions[options.channel] = options;
       self.faye(function(faye) {
         faye.subscribe(options.channel, self.handleResponse);
