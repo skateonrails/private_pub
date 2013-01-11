@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = "private_pub"
-  s.version     = "1.0.3"
+  s.version     = "1.0.4"
   s.author      = "Ryan Bates"
   s.email       = "ryan@railscasts.com"
   s.homepage    = "http://github.com/ryanb/private_pub"
@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec', '~> 2.8.0'
-  s.add_development_dependency 'jasmine', '>= 1.1.1'
+  s.add_development_dependency 'jasmine', '= 1.3.0'
 
   s.rubyforge_project = s.name
   s.required_rubygems_version = ">= 1.3.4"

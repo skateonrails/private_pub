@@ -51,18 +51,6 @@ describe("PrivatePub", function() {
     expect(pub.subscriptions.somechannel).toEqual(options);
   });
 
-  it("adds a faye subscription with response handler when signing", function() {
-    var faye = {subscribe: jasmine.createSpy()};
-    spyOn(pub, 'faye').andCallFake(function(callback) {
-      callback(faye);
-    });
-    var options = {server: "server", channel: "somechannel"};
-    pub.sign(options);
-    expect(faye.subscribe).toHaveBeenCalledWith("somechannel", pub.handleResponse);
-    expect(pub.subscriptions.server).toEqual("server");
-    expect(pub.subscriptions.somechannel).toEqual(options);
-  });
-
   it("triggers faye callback function immediately when fayeClient is available", function() {
     var called = false;
     pub.fayeClient = "faye";
@@ -78,7 +66,7 @@ describe("PrivatePub", function() {
     expect(pub.fayeCallbacks[0]).toEqual("callback");
   });
 
-  it("adds a script tag loading faye js when the server is present", function() {
+  it("adds a script tag loading faye js when the js_faye_url is not present", function() {
     script = {};
     doc.createElement = function() { return script; };
     doc.documentElement = {appendChild: jasmine.createSpy()};
@@ -87,6 +75,20 @@ describe("PrivatePub", function() {
     expect(pub.fayeCallbacks[0]).toEqual("callback");
     expect(script.type).toEqual("text/javascript");
     expect(script.src).toEqual("path/to/faye.js");
+    expect(script.onload).toEqual(pub.connectToFaye);
+    expect(doc.documentElement.appendChild).toHaveBeenCalledWith(script);
+  });
+
+  it("adds a script tag loading js_faye_url when the js_faye_url is present", function() {
+    script = {};
+    doc.createElement = function() { return script; };
+    doc.documentElement = {appendChild: jasmine.createSpy()};
+    pub.subscriptions.server = "path/to/faye";
+    pub.subscriptions.js_faye_url = "path/to/js_faye_url.js";
+    pub.faye("callback");
+    expect(pub.fayeCallbacks[0]).toEqual("callback");
+    expect(script.type).toEqual("text/javascript");
+    expect(script.src).toEqual("path/to/js_faye_url.js");
     expect(script.onload).toEqual(pub.connectToFaye);
     expect(doc.documentElement.appendChild).toHaveBeenCalledWith(script);
   });

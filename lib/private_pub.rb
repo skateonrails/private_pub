@@ -56,7 +56,7 @@ module PrivatePub
     # Returns a subscription hash to pass to the PrivatePub.sign call in JavaScript.
     # Any options passed are merged to the hash.
     def subscription(options = {})
-      sub = {:server => config[:server], :timestamp => (Time.now.to_f * 1000).round}.merge(options)
+      sub = {:server => config[:server], :js_faye_url => config[:js_faye_url], :timestamp => (Time.now.to_f * 1000).round}.merge(options)
       sub[:signature] = Digest::SHA1.hexdigest([config[:secret_token], sub[:channel], sub[:timestamp]].join)
       sub
     end
