@@ -1,3 +1,8 @@
+## 1.0.4 (January 11, 2013)
+
+* added the js_faye_url configuration to call the faye.js file from a different URL that will connect with websocket (see https://github.com/yaoweibin/nginx_tcp_proxy_module/issues/56)
+
+
 ## 1.0.3 (August 20, 2012)
 
 * fixed Faye startup error (thanks gitt) - issue #40

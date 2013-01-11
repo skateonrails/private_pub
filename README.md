@@ -10,7 +10,7 @@ Watch [RailsCasts Episode 316](http://railscasts.com/episodes/316-private-pub) f
 Add the gem to your Gemfile and run the `bundle` command to install it.
 
 ```ruby
-gem "private_pub"
+gem "private_pub", :git => "https://github.com/skateonrails/private_pub.git"
 ```
 
 Run the generator to create the initial files.
